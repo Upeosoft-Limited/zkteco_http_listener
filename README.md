@@ -52,9 +52,9 @@ sudo lsof -i:5000
 sudo kill <PID>
 
 ## Test with Curl
-curl -X POST "{YOUR_API_URL}.cdata" \
-     -H "Content-Type: text/plain" \
-     --data-binary "sample raw data"
+curl -X POST "{YOUR_API_URL}/cdata?SN=TESTSN" \
+     --data-binary $'ATTLOG,2007,2025-08-14 09:31:55,0,1\nATTLOG,2007,2025-08-14 17:02:11,0,1\n'
+
 
 ## Suppost
 For questions or issues, open a GitHub Issue or email: karani@upeosoft.com
