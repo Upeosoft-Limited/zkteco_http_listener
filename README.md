@@ -8,7 +8,6 @@ This is ideal if your ZKTeco device **cannot reach ERPNext directly** (e.g., net
 
 - **Receive GET & POST requests** from ZKTeco biometric devices
 - **Logs all raw pushes** into a local file with timestamps
-- **Optional forwarding** to ERPNext `/api/method/...` endpoint
 - **Configurable authentication** (API key/secret) for ERPNext
 - **Simple to run** — no heavy dependencies
 
@@ -18,21 +17,14 @@ This is ideal if your ZKTeco device **cannot reach ERPNext directly** (e.g., net
 git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 
-## Installation
-python3 --version
-
-## Install required packages
+### Install required packages
 pip install requests
 
 ## Configuration
 LISTEN_PORT = 5000                      # Port to listen on (must match device config)
 LOG_FILE    = "zkteco_raw.log"          # File where logs are stored
 FORWARD_TO_ERP = True                   # True = Forward to ERPNext, False = Only log
-ERP_URL     = "http://local.zkteco:8075/api/method/zkteco_integration.api.cdata"
-
-# If ERPNext endpoint needs authentication:
-ERP_API_KEY = None      # e.g., "your_api_key"
-ERP_API_SECRET = None   # e.g., "your_api_secret"
+ERP_URL     = "{YOUR_API_URL}.cdata"
 
 ## Usage
 python3 zkteco_listener.py
@@ -58,7 +50,6 @@ Failed to bind port 5000: [Errno 98] Address already in use
 ### Solution
 sudo lsof -i:5000
 sudo kill <PID>
-
 
 ## Test with Curl
 curl -X POST "{YOUR_API}.cdata" \
