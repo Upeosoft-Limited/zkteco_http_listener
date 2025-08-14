@@ -52,7 +52,7 @@ sudo lsof -i:5000
 sudo kill <PID>
 
 ## Test with Curl
-curl -X POST "{YOUR_API}.cdata" \
+curl -X POST "{YOUR_API_URL}.cdata" \
      -H "Content-Type: text/plain" \
      --data-binary "sample raw data"
 
