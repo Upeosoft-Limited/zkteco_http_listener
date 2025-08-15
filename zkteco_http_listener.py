@@ -9,12 +9,8 @@ import sys
 # --- CONFIG ---
 LISTEN_PORT = 5000                      # Put this port into the device
 LOG_FILE    = "zkteco_raw.log"          # Where to save raw lines
-FORWARD_TO_ERP = True                   # Forward to ERPNext cdata method?
-ERP_URL     = "http://local.zkteco:8075/api/method/zkteco_integration.api.cdata"
-# If your ERPNext endpoint needs auth, set these (else leave None)
-ERP_API_KEY = None
-ERP_API_SECRET = None
-# -------------
+FORWARD_TO_ERP = True                   
+ERP_URL     = "{ERP_API_SECRET}.cdata"
 
 
 def append_log(line: str):
@@ -60,7 +56,7 @@ class ZKHandler(BaseHTTPRequestHandler):
             # Log locally
             append_log(f"POST /iclock/cdata SN={sn} from {self.client_address[0]}\n{raw.rstrip()}")
 
-            # Optionally forward to ERPNext exactly like the device would
+            # Optionally forward to the ERP exactly like the device would
             if FORWARD_TO_ERP:
                 try:
                     auth = (ERP_API_KEY, ERP_API_SECRET) if ERP_API_KEY else None
@@ -72,9 +68,9 @@ class ZKHandler(BaseHTTPRequestHandler):
                         auth=auth,
                         headers={"Content-Type": "text/plain"}
                     )
-                    append_log(f"Forwarded to ERPNext -> {resp.status_code}")
+                    append_log(f"Forwarded to the ERP -> {resp.status_code}")
                 except Exception as e:
-                    append_log(f"ERROR forwarding to ERPNext: {e}")
+                    append_log(f"ERROR forwarding to the ERP: {e}")
 
             # Always acknowledge to the device
             self._send_text(200, "OK")
