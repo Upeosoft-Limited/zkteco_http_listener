@@ -1,6 +1,6 @@
 # ZKTeco HTTP Listener & ERPNext Forwarder
 
-A lightweight Python 3 HTTP server that listens for **ZKTeco biometric device pushes** (`/iclock/getrequest` and `/iclock/cdata`) and optionally **forwards the raw data** directly to an ERPNext endpoint.
+A lightweight Python 3 HTTP server that listens for **ZKTeco biometric device pushes** (`/iclock/getrequest` and `/iclock/cdata`) and optionally **forwards the raw data** directly to the ERPNext endpoint.
 
 This is ideal if your ZKTeco device **cannot reach ERPNext directly** (e.g., network segmentation, firewall) or if you want to **log all raw traffic** for debugging.
 
